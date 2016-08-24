@@ -1,0 +1,22 @@
+<table class='table'>
+  <thead>
+    <th>
+      User Name
+    </th>
+    <th>
+      Comment
+    </th>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= comment.user_name %>
+        </td>
+        <td>
+          <%= comment.text %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

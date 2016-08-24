@@ -1,0 +1,31 @@
+<p>
+  <ul>
+
+    <% if current_user.present? %>
+      <li>
+        <%= link_to new_post_path do %>
+          <h2>Create new post</h2>
+        <% end %>
+      </li>
+    <% end %>
+
+  </ul>
+</p>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <h3>
+        <%= link_to_post post %>
+        <!-- <a href="/posts/<%= post.id %>"><%= post.title %></a> -->
+      </h3>
+      <p>
+        <%= post.body %>
+      </p>
+      <p>
+        <% if current_user&.admin? %>
+          <%= link_to 'Delete', post_path(post), method: :delete %>
+        <% end %>
+      </p>
+    </li>
+  <% end %>
+</ul>
