@@ -15,7 +15,12 @@ class CommentsController < ApplicationController
 
   def create
     @post.comments.create(comment_params)
-    redirect_to post_path(@post)
+    if request.xhr?
+      render json: { success: true }
+    else
+      redirect_to post_path(@post)
+    end
+
   end
 
   def destroy
