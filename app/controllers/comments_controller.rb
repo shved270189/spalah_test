@@ -1,9 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_post
 
-  # def index
-  #   @comments = @post.comments
-  # end
+  def index
+    @comments = @post.order_comments
+
+    respond_to do |format|
+      format.html { render :index, layout: !request.xhr? }
+      format.json { render json: @comments }
+    end
+  end
 
   # def new
   #   @comment = @post.comments.new
@@ -14,13 +19,17 @@ class CommentsController < ApplicationController
   # end
 
   def create
-    @post.comments.create(comment_params)
-    if request.xhr?
-      render json: { success: true }
-    else
-      redirect_to post_path(@post)
-    end
+    @comment = @post.comments.new(comment_params)
 
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to post_path(@post) }
+        format.json { render json: @comment }
+      else
+        format.html { render :new }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

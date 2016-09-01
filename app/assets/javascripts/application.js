@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery_ujs_extended
 //= require bootstrap-sprockets
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
+//= require_self
+//= require turbolinks
