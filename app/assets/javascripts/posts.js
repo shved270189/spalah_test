@@ -40,10 +40,10 @@ $(document).on('turbolinks:load', function() {
   //   return false;
   // });
 
-  $('#new_comment').on('ajax:success', function(xhr, data, status) {
-    $('#comments tbody').prepend('<tr><td>' + data.user_name + '</td><td>' + data.text + '</td></tr>');
-    $('#comment_text').val('');
-  });
+  // $('#new_comment').on('ajax:success', function(xhr, data, status) {
+  //   $('#comments tbody').prepend('<tr><td>' + data.user_name + '</td><td>' + data.text + '</td></tr>');
+  //   $('#comment_text').val('');
+  // });
 
   // $('#refresh_comments').on('ajax:success', function(xhr, data, status) {
   //   $('#comments_wrapper').html(data);
@@ -58,3 +58,14 @@ $(document).on('turbolinks:load', function() {
   //   return false;
   // });
 });
+
+ws = new WebSocket('ws://localhost:8080');
+
+ws.onopen = function() { console.log('CONNECTION OPEN'); }
+ws.onclose = function() { console.log('CONNECTION CLOSE'); }
+ws.onmessage = function(msg) {
+  var data = JSON.parse(msg.data);
+  $('#' + data.commentable_type.toLowerCase() + '_comments_' + data.commentable_id + ' tbody')
+    .prepend('<tr><td>' + data.user_name + '</td><td>' + data.text + '</td></tr>');
+  $('#comment_text').val('');
+};

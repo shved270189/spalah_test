@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819182644) do
+ActiveRecord::Schema.define(version: 20160902182031) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20160819182644) do
   create_table "comments", force: :cascade do |t|
     t.text     "text"
     t.string   "user_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "post_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160819182644) do
     t.string   "password_digest"
     t.string   "email"
     t.integer  "role",            default: 0
+    t.string   "type"
   end
 
 end

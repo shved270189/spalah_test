@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_owner!, only: [:destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page] || 1, per_page: params[:per_page] || 2)
     render :index
   end
 

@@ -6,17 +6,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { render :index, layout: !request.xhr? }
-      format.json { render json: @comments }
+      format.json { render :index }
     end
   end
-
-  # def new
-  #   @comment = @post.comments.new
-  # end
-
-  # def show
-  #
-  # end
 
   def create
     @comment = @post.comments.new(comment_params)
