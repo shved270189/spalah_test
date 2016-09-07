@@ -59,13 +59,27 @@ $(document).on('turbolinks:load', function() {
   // });
 });
 
-ws = new WebSocket('ws://localhost:8080');
+// ws = new WebSocket('ws://localhost:8080');
+//
+// ws.onopen = function() { console.log('CONNECTION OPEN'); }
+// ws.onclose = function() { console.log('CONNECTION CLOSE'); }
+// ws.onmessage = function(msg) {
+//   var data = JSON.parse(msg.data);
+//   $('#' + data.commentable_type.toLowerCase() + '_comments_' + data.commentable_id + ' tbody')
+//     .prepend('<tr><td>' + data.user_name + '</td><td>' + data.text + '</td></tr>');
+//   $('#comment_text').val('');
+// };
 
-ws.onopen = function() { console.log('CONNECTION OPEN'); }
-ws.onclose = function() { console.log('CONNECTION CLOSE'); }
-ws.onmessage = function(msg) {
-  var data = JSON.parse(msg.data);
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('964185b17dbe78577e37', {
+  cluster: 'eu',
+  encrypted: true
+});
+
+var channel = pusher.subscribe('comments');
+channel.bind('new', function(data) {
   $('#' + data.commentable_type.toLowerCase() + '_comments_' + data.commentable_id + ' tbody')
     .prepend('<tr><td>' + data.user_name + '</td><td>' + data.text + '</td></tr>');
   $('#comment_text').val('');
-};
+});

@@ -23,6 +23,8 @@ class Comment < ApplicationRecord
   private
 
   def publish_comment
-    RmqQueues.instance.publish_comment(self)
+    # RmqQueues.instance.publish_comment(self)
+
+    Pusher.trigger('comments', 'new', self.as_json)
   end
 end
