@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    amq-protocol (2.0.1)
+    bunny (2.5.1)
+      amq-protocol (>= 2.0.1)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
+    eventmachine (1.2.0.1)
+    http_parser.rb (0.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bunny
+  em-websocket
+
+BUNDLED WITH
+   1.12.5
