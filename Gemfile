@@ -62,3 +62,7 @@ gem 'awesome_print'
 gem 'will_paginate', '~> 3.1.0'
 gem 'bunny'
 gem 'pusher'
+gem 'rails-observers', github: 'rails/rails-observers'
+gem 'underscore-rails'
+gem 'sprockets-es6'
+gem "paperclip", "~> 5.0.0"

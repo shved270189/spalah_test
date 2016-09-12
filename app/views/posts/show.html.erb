@@ -6,6 +6,7 @@
   <%= link_to 'Edit', edit_post_path(@post) %>
 </p>
 <p class='post_body'>
+  <%= image_tag @post.image.url(:thumb) %>
   <%= @post.body %>
 </p>
 

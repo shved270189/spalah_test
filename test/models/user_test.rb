@@ -9,6 +9,7 @@
 #  password_digest :string
 #  email           :string
 #  role            :integer          default("user")
+#  type            :string
 #
 
 require 'test_helper'

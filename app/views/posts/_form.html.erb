@@ -1,5 +1,16 @@
-<%= form_for(@post) do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_field :body %>
+<%= form_for(@post, html: { multipart: true }) do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
   <%= f.submit submit_name, class: 'btn btn-primary' %>
 <% end %>
