@@ -16,7 +16,7 @@ class Comment < ApplicationRecord
 
   validates :user_name, :text, presence: true
 
-  after_create :publish_comment
+  after_commit :publish_comment
 
   # scope :order_created_at, ->(ord = :desc) { order("created_at #{ord.to_s}") }
 
