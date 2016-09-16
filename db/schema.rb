@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909181507) do
+ActiveRecord::Schema.define(version: 20160914175353) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20160909181507) do
     t.string   "commentable_type"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.integer  "imagable_id"
+    t.string   "imagable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -60,6 +71,10 @@ ActiveRecord::Schema.define(version: 20160909181507) do
     t.string   "email"
     t.integer  "role",            default: 0
     t.string   "type"
+    t.string   "resume"
+    t.string   "provider"
+    t.text     "picture"
+    t.string   "provider_id"
   end
 
 end

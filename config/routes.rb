@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'dashboard' => 'dashboard#index'
+  get '/auth/:provider/callback', to: 'sessions#create'
 
   devise_for :admins
   resources :users do

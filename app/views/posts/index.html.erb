@@ -1,4 +1,17 @@
 <p>
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+  <%= f.label :body_eq %>
+  <%= f.search_field :body_eq %>
+
+  <%= f.label :comments_text_cont %>
+  <%= f.search_field :comments_text_cont %>
+  <%= f.submit 'Search' %>
+<% end %>
+</p>
+
+<p>
   <ul>
 
     <% if current_user.present? %>

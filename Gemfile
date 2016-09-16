@@ -66,3 +66,7 @@ gem 'rails-observers', github: 'rails/rails-observers'
 gem 'underscore-rails'
 gem 'sprockets-es6'
 gem "paperclip", "~> 5.0.0"
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'omniauth-facebook'
+gem 'settingslogic'
+gem 'ransack'

@@ -10,6 +10,7 @@
 #  email           :string
 #  role            :integer          default("user")
 #  type            :string
+#  resume          :string
 #
 
 require 'test_helper'

@@ -3,6 +3,8 @@
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
+  <%= image_tag @user.avatar_file.url(:thumb) %>
+  <%= link_to 'Download resume', @user.resume.url %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

@@ -1,0 +1,27 @@
+1. File uploads
+  https://github.com/markets/awesome-ruby#file-upload
+
+Feature:
+Background Jobs
+PostgreSQL, MySQL
+AttributeMethods Serialization, PostgreSQL json/array types
+  http://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html
+MongoDB
+Likes/Votes
+Read/unread
+  https://github.com/ledermann/unread
+CanCan
+Pundit
+Social Network authorization
+Search
+Localization
+Activeadmin, RailsAdmin
+rspec-rails
+Capybara
+Grape API
+Capistrano
+Docker
+Bower
+CoffeeScript
+ActionCable
+Architectures

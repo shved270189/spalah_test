@@ -11,9 +11,12 @@
   <body>
     <% if current_user.blank? %>
       <h1><%= link_to 'Login', login_users_path %></h1>
+      <h1><%= link_to 'Login by FB', '/auth/facebook' %></h1>
     <% else %>
       <h1>Hello, <%= current_user.name %>!!!!!!!</h1>
+      <%= image_tag current_user.picture %>
       <h1><%= link_to 'Logout', logout_users_path, method: :delete %></h1>
+      <h1><%= link_to 'Profile', edit_user_path(current_user) %></h1>
     <% end %>
     <%= yield %>
   </body>
