@@ -11,6 +11,9 @@
 #  role            :integer          default("user")
 #  type            :string
 #  resume          :string
+#  provider        :string
+#  picture         :text
+#  provider_id     :string
 #
 
 require 'test_helper'

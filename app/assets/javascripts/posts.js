@@ -62,6 +62,8 @@ $(document).on('turbolinks:load', function() {
 var notifier = new Notify('ws://localhost:8080');
 notifier.on('new_comments', (data) => {
   console.log(data);
+  $('#' + data.commentable_type.toLowerCase() + '_comments_' + data.commentable_id + ' tbody')
+  .prepend('<tr><td>' + data.user_name + '</td><td>' + data.text + '</td></tr>');
 })
 
 

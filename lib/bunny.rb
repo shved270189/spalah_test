@@ -8,6 +8,7 @@ class RmqQueues
   end
 
   def publish(channel_name, data)
+    sleep 3
     payload = {
       channel: channel_name,
       data: data

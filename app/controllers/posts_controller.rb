@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.search(params[:q])
-    @posts = @q.result(distinct: true).paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    @posts = @q.result(distinct: true).order('created_at desc').paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
     render :index
   end
 
@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    SleeperJob.perform_later
     @post = current_user.posts.create(post_params)
     # @post = Post.create(post_params.merge(user_id: current_user.id))
     redirect_to post_path(@post)

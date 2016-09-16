@@ -44,6 +44,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'rack-mini-profiler', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -70,3 +74,7 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'omniauth-facebook'
 gem 'settingslogic'
 gem 'ransack'
+gem 'friendly_id', github: 'norman/friendly_id'
+gem 'sidekiq'
+gem 'foreman'
+gem 'em-websocket'

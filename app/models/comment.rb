@@ -23,8 +23,8 @@ class Comment < ApplicationRecord
   private
 
   def publish_comment
-    RmqQueues.instance.publish('new_comments', self)
-
+    ChatJob.perform_later(self.id)
+    # RmqJob
     # Pusher.trigger('comments', 'new', self.as_json)
   end
 end

@@ -11,6 +11,9 @@
 #  role            :integer          default("user")
 #  type            :string
 #  resume          :string
+#  provider        :string
+#  picture         :text
+#  provider_id     :string
 #
 
 class User < ApplicationRecord
@@ -31,4 +34,8 @@ class User < ApplicationRecord
   enum role: [:user, :admin, :moderator]
 
   delegate :file, to: :avatar, prefix: true
+
+  after_create do
+    UserMailer.welcome(self).deliver_later
+  end
 end
