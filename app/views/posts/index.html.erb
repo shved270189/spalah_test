@@ -38,6 +38,11 @@
         <% if current_user&.admin? %>
           <%= link_to 'Delete', post_path(post), method: :delete %>
         <% end %>
+        <% if current_user %>
+          <span class="likes_post">
+            <%= render partial: 'likes_post', locals: { post: post } %>
+          </span>
+        <% end %>
       </p>
     </li>
   <% end %>

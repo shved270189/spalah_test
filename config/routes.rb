@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
     member do
       get :red
+      post :like
+      post :unlike
     end
     collection do
       get :two

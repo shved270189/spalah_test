@@ -21,6 +21,10 @@
 //   return prom;
 // }
 $(document).on('turbolinks:load', function() {
+  $(document).on('ajax:success', '.like_anchors', function(xhr, data, status) {
+    $(xhr.currentTarget).closest('span.likes_post').html(data);
+    // $('span#likes_data_' + data.id).html();
+  });
   // $('#new_comment input[type="submit"]').on('click', function(event) {
   //   var userName = $('#comment_user_name').val();
   //   var message = $('#comment_text').val();
