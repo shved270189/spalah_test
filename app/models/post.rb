@@ -17,10 +17,11 @@
 #
 
 class Post < ApplicationRecord
+  default_value_for :likes, []
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
 
-  serialize :likes, Array
+  # serialize :likes, Array
 
   has_attached_file :image, styles: { medium: "200x200>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
@@ -33,7 +34,7 @@ class Post < ApplicationRecord
   # validates :slug, uniquenes: true
 
   before_save do
-    likes.uniq!
+    self.likes = self.likes.uniq
   end
 
   # before_create do

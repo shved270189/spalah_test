@@ -28,7 +28,8 @@ class PostsController < ApplicationController
 
   def create
     SleeperJob.perform_later
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.new(post_params)
+    @post.save
     # @post = Post.create(post_params.merge(user_id: current_user.id))
     redirect_to post_path(@post)
   end
