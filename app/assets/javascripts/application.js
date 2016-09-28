@@ -16,7 +16,7 @@
 //= require bootstrap-sprockets
 //= require nprogress
 //= require nprogress-turbolinks
-//= require underscore
+//= require underscore/underscore
 //= require notify
 //= require_tree .
 //= require_self

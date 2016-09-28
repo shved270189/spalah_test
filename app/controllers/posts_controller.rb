@@ -1,20 +1,13 @@
 class PostsController < ApplicationController
   before_action :authenticate!, except: [:index, :show]
-  before_action :authenticate_owner!, only: [:destroy]
-  before_action :set_post, except: [:index, :two, :new, :create]
+  # before_action :authenticate_owner!, only: [:destroy]
+  # before_action :set_post, except: [:index, :two, :new, :create]
+  load_and_authorize_resource
 
   def index
     @q = Post.search(params[:q])
-    @posts = @q.result(distinct: true).order('created_at desc').paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    @posts = @q.result(distinct: true).order('created_at desc').page(params[:page])
     render :index
-  end
-
-  def two
-    @posts = Post.order('created_at desc').limit(2)
-    render :index
-  end
-
-  def red
   end
 
   def show
@@ -23,14 +16,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
   end
 
   def create
-    SleeperJob.perform_later
-    @post = current_user.posts.new(post_params)
+    binding.pry
     @post.save
-    # @post = Post.create(post_params.merge(user_id: current_user.id))
     redirect_to post_path(@post)
   end
 
@@ -58,10 +48,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
 
   def post_params
     params.require(:post).permit(:title, :body, :image)

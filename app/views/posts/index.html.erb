@@ -14,7 +14,7 @@
 <p>
   <ul>
 
-    <% if current_user.present? %>
+    <% if can? :create, Post %>
       <li>
         <%= link_to new_post_path do %>
           <h2>Create new post</h2>
@@ -35,7 +35,7 @@
         <%= post.body %>
       </p>
       <p>
-        <% if current_user&.admin? %>
+        <% if can? :destroy, post %>
           <%= link_to 'Delete', post_path(post), method: :delete %>
         <% end %>
         <% if current_user %>
@@ -48,4 +48,4 @@
   <% end %>
 </ul>
 
-<%= will_paginate @posts %>
+<%= paginate @posts %>

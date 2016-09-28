@@ -2,9 +2,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   database: spalah_development
+  pool: 25
   username: root
-  password: rootpasswd
-  host: db
+  password:
 
 development:
   <<: *default
