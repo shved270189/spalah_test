@@ -50,28 +50,30 @@ class Post < ApplicationRecord
   end
 
   def likes_count
-    likes.count
+    # likes.count
+    Like.where(post_id: id).count
   end
 
   def liked_by?(user)
-    likes.include? user.id
+    # likes.include? user.id
+    Like.where(post_id: id, user_id: user.id).exists?
   end
 
   def like_by(user)
-    likes << user.id
+    # likes << user.id
+    Like.where(post_id: id, user_id: user.id).find_or_create_by
   end
 
   def like_by!(user)
-    like_by(user)
-    save
+    like_by(user).save
   end
 
   def unlike_by(user)
-    likes.delete(user.id)
+    # likes.delete(user.id)
+    Like.where(post_id: id, user_id: user.id).destroy
   end
 
   def unlike_by!(user)
     unlike_by(user)
-    save
   end
 end

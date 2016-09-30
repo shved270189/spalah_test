@@ -6,8 +6,14 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.search(params[:q])
-    @posts = @q.result(distinct: true).order('created_at desc').page(params[:page])
+    @posts = @q.result(distinct: true).includes(:comments, :user).order('created_at desc').page(params[:page])
+
     render :index
+
+    # respond_to do |format|
+    #   format.html { render :index }
+    #   format.json { render json: @posts.map { |post| post.as_json.merge(comments: post.comments) } }
+    # end
   end
 
   def show

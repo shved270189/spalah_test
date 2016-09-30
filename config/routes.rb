@@ -7,6 +7,21 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboard#index'
   get '/auth/:provider/callback', to: 'sessions#create'
 
+  namespace :api, defaults: { format: :json } do
+    resources :posts, only: [:index, :show, :create, :update, :destroy] do
+      member do
+        post :like
+        post :unlike
+      end
+    end
+
+    resources :users, only: [] do
+      collection do
+        post :sign_in
+      end
+    end
+  end
+
   resources :users do
     collection do
       get :login
@@ -20,12 +35,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy, :index]
 
     member do
-      get :red
       post :like
       post :unlike
-    end
-    collection do
-      get :two
     end
   end
 

@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :body, :slug, :title, :image
+  permit_params :body, :slug, :title, :image, :user_id
 
   index do
     selectable_column
@@ -36,6 +36,7 @@ ActiveAdmin.register Post do
       f.input :slug
       f.input :title
       f.input :image
+      f.input :user_id
     end
     f.actions
   end
