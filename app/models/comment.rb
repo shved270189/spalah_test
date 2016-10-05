@@ -3,12 +3,12 @@
 # Table name: comments
 #
 #  id               :integer          not null, primary key
-#  text             :text
-#  user_name        :string
+#  text             :text(65535)
+#  user_name        :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  commentable_id   :integer
-#  commentable_type :string
+#  commentable_type :string(255)
 #
 
 class Comment < ApplicationRecord

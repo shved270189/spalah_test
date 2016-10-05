@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'shop/index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       collection do
         post :sign_in
+        delete :sign_out
       end
     end
   end
@@ -41,5 +44,7 @@ Rails.application.routes.draw do
   end
 
   root 'posts#index'
+
+  mount Spalah::Api => '/'
 
 end

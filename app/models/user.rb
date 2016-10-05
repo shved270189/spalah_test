@@ -3,17 +3,18 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string
+#  name            :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  password_digest :string
-#  email           :string
+#  password_digest :string(255)
+#  email           :string(255)
 #  role            :integer          default("user")
-#  type            :string
-#  resume          :string
-#  provider        :string
-#  picture         :text
-#  provider_id     :string
+#  type            :string(255)
+#  resume          :string(255)
+#  provider        :string(255)
+#  picture         :text(65535)
+#  provider_id     :string(255)
+#  auth_token      :string(255)
 #
 
 class User < ApplicationRecord
@@ -21,6 +22,7 @@ class User < ApplicationRecord
   mount_uploader :resume, ResumeUploader
 
   has_many :posts
+  has_many :sessions
 
   has_one :avatar, as: :imagable, class_name: Image
 
@@ -37,5 +39,9 @@ class User < ApplicationRecord
 
   after_create do
     UserMailer.welcome(self).deliver_later
+  end
+
+  def generate_session_token!
+    sessions.create.token
   end
 end
