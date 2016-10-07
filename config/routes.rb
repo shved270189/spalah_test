@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   mount Spalah::Api => '/'
+  mount GrapeSwaggerRails::Engine => '/documentation'
 
 end
