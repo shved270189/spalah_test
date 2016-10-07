@@ -1,5 +1,5 @@
 class Session < ApplicationRecord
-  belongs_to :user
+ include Userable
 
   validates :token, presence: true
   validates :token, uniqueness: true

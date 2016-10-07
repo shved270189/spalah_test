@@ -17,6 +17,8 @@
 #
 
 class Post < ApplicationRecord
+  include Userable
+
   default_value_for :likes, []
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
@@ -28,9 +30,8 @@ class Post < ApplicationRecord
 
   has_many :comments, as: :commentable
   # has_many :order_comments, -> { order('created_at desc') } , class_name: Comment, as: :commentable
-  belongs_to :user
 
-  validates :title, :user_id, :body, presence: true
+  validates :title, :body, presence: true
   # validates :slug, uniquenes: true
 
   before_save do
@@ -50,18 +51,15 @@ class Post < ApplicationRecord
   end
 
   def likes_count
-    # likes.count
-    Like.where(post_id: id).count
+    likes.count
   end
 
   def liked_by?(user)
-    # likes.include? user.id
-    Like.where(post_id: id, user_id: user.id).exists?
+    likes.include? user.id
   end
 
   def like_by(user)
-    # likes << user.id
-    Like.where(post_id: id, user_id: user.id).find_or_create_by
+    likes << user.id
   end
 
   def like_by!(user)
@@ -69,8 +67,7 @@ class Post < ApplicationRecord
   end
 
   def unlike_by(user)
-    # likes.delete(user.id)
-    Like.where(post_id: id, user_id: user.id).destroy
+    likes.delete(user.id)
   end
 
   def unlike_by!(user)
