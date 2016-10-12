@@ -51,6 +51,12 @@ group :development do
   gem 'rack-mini-profiler', require: false
 end
 
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'factory_girl'
+  gem 'faker'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -90,3 +96,4 @@ gem 'grape', '0.15.0'
 gem 'grape-entity', '0.4.8'
 gem 'grape-swagger', '0.10.4'
 gem 'grape-swagger-rails', '0.2.0'
+gem 'rspec-rails', '~> 3.5'

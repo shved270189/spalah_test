@@ -63,7 +63,8 @@ class Post < ApplicationRecord
   end
 
   def like_by!(user)
-    like_by(user).save
+    like_by(user)
+    save
   end
 
   def unlike_by(user)
