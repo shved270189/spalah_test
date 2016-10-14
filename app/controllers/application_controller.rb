@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
 
+  before_action :set_locale
+
   before_action :set_session_user_id
 
   private
@@ -34,5 +36,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate_owner!
     render(file: 'public/401.html', status: :unauthorized) unless current_user.admin?
+  end
+
+  def set_locale
+    # binding.pry
+    (params[:lng].present? && SpalahGem::LOCALES.include?(params[:lng].to_sym)) ? I18n.locale = params[:lng] : I18n.locale = :en
   end
 end

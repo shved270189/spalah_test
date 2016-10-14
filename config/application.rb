@@ -20,5 +20,6 @@ module SpalahTest
     config.generators do |g|
       g.orm :active_record
     end
+    # config.i18n.load_path += Dir.glob( File.dirname(__FILE__) + "lib/locales/*.{rb,yml}" )
   end
 end

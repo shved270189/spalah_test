@@ -33,15 +33,16 @@ Rails.application.routes.draw do
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # scope :blog do
+    resources :posts do # , constraints: {subdomain: 'blog'} do
+      resources :comments, only: [:create, :destroy, :index]
 
-  resources :posts do
-    resources :comments, only: [:create, :destroy, :index]
-
-    member do
-      post :like
-      post :unlike
+      member do
+        post :like
+        post :unlike
+      end
     end
-  end
+  # end
 
   root 'posts#index'
 

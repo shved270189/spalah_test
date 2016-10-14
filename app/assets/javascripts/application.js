@@ -21,3 +21,10 @@
 //= require_tree .
 //= require_self
 //= require turbolinks
+
+$(document).on('turbolinks:load', function() {
+    $('#test').click(function () {
+        console.log(event.currentTarget);
+        return false;
+    })
+});

@@ -41,6 +41,12 @@ GIT
     rails-observers (0.1.3.alpha)
       activemodel (>= 4.0, < 5.1)
 
+GIT
+  remote: git://github.com/shved270189/spalah_gem.git
+  revision: 4b7d8a1c0b190e9c754c1dcbac52299c01bd402f
+  specs:
+    spalah_gem (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -469,6 +475,7 @@ DEPENDENCIES
   settingslogic
   shoulda-matchers (~> 3.1)
   sidekiq
+  spalah_gem!
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets-es6
