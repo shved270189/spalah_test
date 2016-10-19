@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate!, except: [:index, :show]
+  # before_action :authenticate!, except: [:index, :show]
   # before_action :authenticate_owner!, only: [:destroy]
   # before_action :set_post, except: [:index, :two, :new, :create]
   load_and_authorize_resource
@@ -25,7 +25,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
     @post.save
     redirect_to post_path(@post)
   end
