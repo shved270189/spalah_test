@@ -31,7 +31,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor', group: :production
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,6 +38,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano-rails', group: :development
+  gem 'capistrano-rvm'
+  gem 'capistrano-passenger'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
@@ -97,4 +99,4 @@ gem 'grape-entity', '0.4.8'
 gem 'grape-swagger', '0.10.4'
 gem 'grape-swagger-rails', '0.2.0'
 gem 'rspec-rails', '~> 3.5'
-gem 'spalah_gem', github: 'shved270189/spalah_gem'
+gem 'spalah_gem', '~> 0.1.0'
