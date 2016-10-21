@@ -1,3 +1,12 @@
+<% if @post.errors.present? %>
+  <ul>
+    <% @post.errors.messages.each do |key, msgs| %>
+      <li>
+        <%= key %> : <%= msgs.join(', ') %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for(@post, html: { multipart: true }) do |f| %>
   <div class="form-group">
     <%= f.label :title %>

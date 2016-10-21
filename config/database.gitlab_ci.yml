@@ -1,0 +1,12 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  database: spalah_development
+  pool: 25
+  host: mysql
+  username: root
+  password: rootpassword
+
+test:
+  <<: *default
+  database: spalah_test

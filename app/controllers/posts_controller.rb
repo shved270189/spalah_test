@@ -25,8 +25,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post.save
-    redirect_to post_path(@post)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render :new
+    end
   end
 
   def edit

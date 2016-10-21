@@ -100,3 +100,8 @@ gem 'grape-swagger', '0.10.4'
 gem 'grape-swagger-rails', '0.2.0'
 gem 'rspec-rails', '~> 3.5'
 gem 'spalah_gem', '~> 0.1.0'
+gem 'unicorn'
+gem 'capybara'
+gem 'selenium-webdriver'
+gem 'capybara-webkit'
+
