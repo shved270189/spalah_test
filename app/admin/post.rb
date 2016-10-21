@@ -36,7 +36,7 @@ ActiveAdmin.register Post do
       f.input :slug
       f.input :title
       f.input :image
-      f.input :user_id
+      f.input :user_id, as: :select, collection: User.pluck(:name, :id), include_blank: false
     end
     f.actions
   end
