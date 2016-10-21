@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'spalah_app'
-set :repo_url, 'https://github.com/shved270189/spalah_test'
+set :repo_url, 'git@gitlab.com:shved270189/spalah_test.git'
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.3.0'
