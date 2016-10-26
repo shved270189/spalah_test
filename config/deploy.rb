@@ -12,9 +12,9 @@ set :rvm_ruby_version, '2.3.0'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/spalah/spalah_app'
 
-set :unicorn_pid, '/home/spalah/spalah_app/shared/pids/unicorn.pid'
+set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
-set :unicorn_config_path, '/home/spalah/spalah_app/current/config/unicorn.rb'
+set :unicorn_config_path, "#{release_path}/config/unicorn.rb"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -41,9 +41,21 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing', 'deploy:restart'
-namespace :deploy do
+# after 'deploy:publishing', 'deploy:restart'
+# namespace :deploy do
+#   task :restart do
+#     invoke 'unicorn:reload'
+#   end
+# end
+
+namespace :unicorn do
   task :restart do
-    invoke 'unicorn:reload'
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
+  end
+  task :start do
+    run "bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+  end
+  task :stop do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -9 `cat #{unicorn_pid}`; fi"
   end
 end
