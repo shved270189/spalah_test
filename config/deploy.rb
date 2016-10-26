@@ -12,9 +12,11 @@ set :rvm_ruby_version, '2.3.0'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/spalah/spalah_app'
 
-set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
-
-set :unicorn_conf, "#{release_path}/config/unicorn.rb"
+# set :unicorn_pid, "#{fetch deploy_to}/shared/pids/unicorn.pid"
+set :unicorn_pid, -> { File.join(deploy_to, "shared", "pids", "unicorn.pid") }
+set :unicorn_config_path, -> { File.join(current_path, "config", "unicorn.rb") }
+#
+# set :unicorn_conf, "#{fetch release_path}/config/unicorn.rb"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -48,14 +50,18 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 #   end
 # end
 
-namespace :unicorn do
-  task :restart do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
-  end
-  task :start do
-    run "bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
-  end
-  task :stop do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -9 `cat #{unicorn_pid}`; fi"
-  end
-end
+# namespace :unicorn do
+#   task :restart do
+#     run "if [ -f #{fetch unicorn_pid} ] && [ -e /proc/$(cat #{fetch unicorn_pid}) ]; then kill -9 `cat #{fetch unicorn_pid}`; else cd #{fetch deploy_to}/current && bundle exec unicorn -c #{fetch unicorn_conf} -E #{fetch rails_env} -D; fi"
+#   end
+#   task :start do
+#     on roles(:all) do |host|
+#       within './current' do
+#         execute "bundle exec unicorn -c #{fetch :unicorn_conf} -E #{fetch :rails_env} -D"
+#       end
+#     end
+#   end
+#   task :stop do
+#     run "if [ -f #{fetch unicorn_pid} ] && [ -e /proc/$(cat #{fetch unicorn_pid}) ]; then kill -9 `cat #{fetch unicorn_pid}`; fi"
+#   end
+# end
