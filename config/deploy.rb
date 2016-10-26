@@ -14,7 +14,7 @@ set :deploy_to, '/home/spalah/spalah_app'
 
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
-set :unicorn_config_path, "#{release_path}/config/unicorn.rb"
+set :unicorn_conf, "#{release_path}/config/unicorn.rb"
 
 # Default value for :scm is :git
 # set :scm, :git
