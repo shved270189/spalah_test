@@ -21,13 +21,13 @@ require 'capybara/rspec'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-require 'capybara/dsl'
-require 'selenium-webdriver'
+# require 'capybara/dsl'
+# require 'selenium-webdriver'
 # Capybara.default_driver = :webkit
 # Capybara.javascript_driver = :webkit
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 

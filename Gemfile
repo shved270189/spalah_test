@@ -59,8 +59,6 @@ group :test do
   gem 'factory_girl'
   gem 'faker'
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'capybara-webkit'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
