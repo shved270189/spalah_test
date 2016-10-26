@@ -51,12 +51,16 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'rack-mini-profiler', require: false
+  gem 'capistrano3-unicorn'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl'
   gem 'faker'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -101,7 +105,3 @@ gem 'grape-swagger-rails', '0.2.0'
 gem 'rspec-rails', '~> 3.5'
 gem 'spalah_gem', '~> 0.1.0'
 gem 'unicorn'
-gem 'capybara'
-gem 'selenium-webdriver'
-gem 'capybara-webkit'
-

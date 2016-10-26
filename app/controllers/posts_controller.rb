@@ -6,8 +6,10 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.search(params[:q])
-    @posts = @q.result(distinct: true).includes(:comments, :user).order('created_at desc').page(params[:page])
+    @posts = @q.result
+    @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
 
+    @posts = @posts.distinct.includes(:comments, :user).order('created_at desc').page(params[:page])
     render :index
 
     # respond_to do |format|

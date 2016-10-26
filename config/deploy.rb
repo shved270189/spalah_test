@@ -12,6 +12,10 @@ set :rvm_ruby_version, '2.3.0'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/spalah/spalah_app'
 
+set :unicorn_pid, '/home/spalah/spalah_app/shared/pids/unicorn.pid'
+
+set :unicorn_config_path, '/home/spalah/spalah_app/current/config/unicorn.rb'
+
 # Default value for :scm is :git
 # set :scm, :git
 
@@ -36,3 +40,10 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:reload'
+  end
+end
