@@ -18,6 +18,10 @@ class Comment < ApplicationRecord
 
   after_commit :publish_comment
 
+  searchable do
+    text :text, :user_name
+  end
+
   # scope :order_created_at, ->(ord = :desc) { order("created_at #{ord.to_s}") }
 
   private

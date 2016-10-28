@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = Post.search(params[:q])
+    @q = Post.ransack(params[:q])
     @posts = @q.result
     @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
 

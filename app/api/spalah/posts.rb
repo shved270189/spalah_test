@@ -2,7 +2,7 @@ module Spalah
   class Posts < Grape::API
     helpers Spalah::Helpers::AuthHelper
 
-    before { authenticate! }
+    # before { authenticate! }
 
     namespace :my_post do
       desc 'Posts list', entity: PostEntity, is_array: true

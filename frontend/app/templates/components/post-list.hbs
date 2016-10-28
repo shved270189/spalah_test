@@ -1,0 +1,18 @@
+<table>
+  <thead>
+  <th>
+    ID
+  </th>
+  <th>
+    TITLE
+  </th>
+  <th>
+    CREATED AT
+  </th>
+  </thead>
+  <tbody>
+  {{#each posts as |post|}}
+    {{post-item post=post}}
+  {{/each}}
+  </tbody>
+</table>

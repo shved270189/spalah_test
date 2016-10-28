@@ -38,6 +38,11 @@ class Post < ApplicationRecord
     self.likes = self.likes.uniq
   end
 
+  searchable do
+    text :title, :body
+  end
+  # real=4.913605000000189
+
   # before_create do
   #   slug_candidate = title.downcase.gsub(' ', '-') # My First Post => my-first-post
   #   if Post.exists?(slug: slug_candidate)

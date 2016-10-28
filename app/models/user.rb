@@ -37,6 +37,10 @@ class User < ApplicationRecord
 
   delegate :file, to: :avatar, prefix: true
 
+  searchable do
+    text :name
+  end
+
   after_create do
     UserMailer.welcome(self).deliver_later
   end

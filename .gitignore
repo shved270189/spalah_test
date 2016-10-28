@@ -20,3 +20,6 @@ data/
 
 # Ignore Byebug command history file.
 .byebug_history
+solr/
+frontend/bower_components
+frontend/node_modules

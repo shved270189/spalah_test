@@ -4,7 +4,7 @@ module Spalah
       extend Grape::API::Helpers
 
       params :authentication do
-        requires :auth_token, type: String, desc: 'Auth Token'
+        optional :auth_token, type: String, desc: 'Auth Token'
       end
     end
   end

@@ -2,12 +2,12 @@ module Api
   class PostsController < ApplicationController
     respond_to :json
 
-    before_action :authenticate!
+    before_action :authenticate!, except: [:index, :show]
 
     load_and_authorize_resource
 
     def index
-      @q = Post.search(params[:q])
+      @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true).includes(:comments, :user).order('created_at desc').page(params[:page])
 
       render :index
