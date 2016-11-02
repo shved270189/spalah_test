@@ -5,17 +5,17 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result
-    @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
 
-    @posts = @posts.distinct.includes(:comments, :user).order('created_at desc').page(params[:page])
-    render :index
+    # @q = Post.ransack(params[:q])
+    # @posts = @q.result
+    # @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
 
-    # respond_to do |format|
-    #   format.html { render :index }
-    #   format.json { render json: @posts.map { |post| post.as_json.merge(comments: post.comments) } }
-    # end
+    @q = Post.search(params[:q].try(:merge, m: 'or'))
+    @posts = @q.result(distinct: true).includes(:comments, :user).order('created_at desc').page(params[:page])
+    # @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
+
+
+    # @posts = @posts.distinct.includes(:comments, :user).order('created_at desc').page(params[:page])
   end
 
   def show
