@@ -5,5 +5,12 @@ export default Ember.Component.extend({
 
   normalData: Ember.computed('post.created_at', function() {
     return new Date(this.get('post.created_at') * 1000);
-  })
+  }),
+
+  actions: {
+    savePost: function(post) {
+      console.log(post.get('title'));
+      post.save();
+    }
+  }
 });

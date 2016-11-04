@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     # @posts = @q.result
     # @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
 
-    @q = Post.search(params[:q].try(:merge, m: 'or'))
+    @q = Post.ransack(params[:q].try(:merge, m: 'or'))
     @posts = @q.result(distinct: true).includes(:comments, :user).order('created_at desc').page(params[:page])
     # @posts = @posts.or(Post.where(id: params[:q]['title_cont'])) if params[:q].present? && params[:q]['title_cont'].present?
 

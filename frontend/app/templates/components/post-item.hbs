@@ -3,6 +3,8 @@
 </td>
 <td>
   {{post.title}}
+  {{input value=post.title}}
+  <button {{action 'savePost' post}}>Save</button>
 </td>
 <td>
   {{normalData}}

@@ -2,7 +2,7 @@ module Api
   class PostsController < ApplicationController
     respond_to :json
 
-    before_action :authenticate!, except: [:index, :show]
+    before_action :authenticate!, except: [:index, :show, :update]
 
     load_and_authorize_resource
 
@@ -25,7 +25,7 @@ module Api
 
     def update
       @post.update(post_params)
-      redirect_to post_path(@post)
+      render :show
     end
 
     def destroy
